@@ -1,0 +1,211 @@
+<html ng-app="nameApp">
+<head>
+<title>Program-1: FULLNAME</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js "> </script>
+</head>
+<body bgcolor="black" text="white">
+<center>
+<h1>Program-1</h1>
+<h1>Develop Angular JS program that allows user to input their first name and last name and
+display their fullname. Note: The default values for first name and last name may be included in
+the program.
+</h1>
+</center>
+<hr>
+<div ng-controller="nameCtrl">
+<!-- Input fields for first name and last name -->
+<center>
+<div>
+<h1> First Name </h1>
+<input type="text" ng-model="firstName" placeholder="Enter your first name">
+</div>
+<div>
+<h1> Last Name </h1>
+<input type="text" ng-model="lastName" placeholder="Enter your last name">
+</div>
+<br><br>
+<!-- Button to display the full name -->
+<button ng-click="displayFullName()">Display Full Name</button>
+<!-- Display the full name -->
+<h1>Full Name is: {{ fullName }}</h1>
+</center>
+</div>
+<script>
+angular.module('nameApp', [])
+.controller('nameCtrl', function ($scope) {
+// Default values for first name and last name
+$scope.firstName = 'Rama';
+$scope.lastName = 'Krishna';
+// Function to display the full name
+$scope.displayFullName = function () {
+$scope.fullName = $scope.firstName + ' ' + $scope.lastName;
+};
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+********************************************************************
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<title>Program-2: Shopping List</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body bgcolor="gray" text="black" >
+<center>
+<h1> Program-2 </h1>
+<h1>Develop an Angular JS application that displays a list of shopping items. Allow users to add and
+remove items from the list using directives and controllers.
+Note: The default values of items may
+be included in the program
+</h1>
+</center>
+<hr>
+<body ng-controller="MyController">
+<h1>Shopping List</h1>
+<label for="itemInput">Enter products into the List:</label>
+<input type="text" ng-model="newItem">
+<button ng-click="addItem()"> Add Item </button>
+<table>
+<tr ng-repeat="item in itemList">
+<td>{{ item }}</td>
+<td> <button ng-click="removeItem($index)"> Remove </button> </td>
+</tr>
+</table>
+<script>
+var app = angular.module('myApp', []);
+app.controller('MyController', function ($scope)
+{
+// Initialize an empty array to store items
+$scope.itemList = [];
+// Default values for shopping items
+$scope.itemList = ['Apples', 'Biscuits'
+, 'Bread', 'Milk'];
+$scope.addItem = function ()
+{
+if ($scope.newItem){
+    $scope.itemList.push($scope.newItem);
+$scope.newItem =
+''; // Clear the input field
+}
+};
+// Function to remove an item
+$scope.removeItem = function (index)
+{
+$scope.itemList.splice(index, 1);
+};
+});
+</script>
+</body>
+</html>
+*****************************************************
+html ng-app="calculatorApp">
+<head>
+<title>Program-3: Calculator</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body bgcolor="brown" text="white" ng-controller="calculatorController">
+<center>
+<h1>Program-3</h1>
+<h1>Develop a simple Angular JS calculator application that can perform basic mathematical
+operations(addition, subtraction, multiplication, division) based on user input.
+</h1>
+<hr>
+<h2>
+Enter Number 1: <input type="number" ng-model="num1" />
+Enter Number 2: <input type="number" ng-model="num2" />
+</h2>
+<h2>Select Operator</h2>
+<select ng-model="operator">
+<option value="+">Add</option>
+<option value=
+"
+-
+">Subtract</option>
+<option value="*">Multiply</option>
+<option value="/">Divide</option>
+</select>
+<br><br>
+<h1>
+<button ng-click="calculate()">Calculate</button>
+</h1>
+<p ng-show="result !== undefined">Result: {{ result }}</p>
+<script>
+var app = angular.module('calculatorApp', []);
+app.controller('calculatorController', function ($scope) {
+$scope.calculate = function () {
+switch ($scope.operator) {
+case '+':
+$scope.result = $scope.num1 + $scope.num2;
+break;
+case '
+-
+':
+$scope.result = $scope.num1 - $scope.num2;
+break;
+case '*':
+$scope.result = $scope.num1 * $scope.num2;
+break;
+case '/':
+if ($scope.num2 !== 0) {
+$scope.result = $scope.num1 / $scope.num2;
+} else {
+$scope.result = 'Cannot divide by zero';
+}
+break;
+}
+};
+});
+</script>
+</body>
+</html>
+*****************************************************************
+<html ng-app="mathApp">
+<head>
+<title>AngularJS Math Operations</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="mathController">
+<center>
+<h1>Program-4</h1>
+<h1>Write an Angular JS application that can calculate factorial and compute square based on given
+user input.
+</h1>
+</center>
+<hr>
+Enter a Number:
+<input type="number" ng-model="inputNumber" />
+<button ng-click="calculateFactorial()">Calculate Factorial</button>
+<button ng-click="calculateSquare()">Calculate Square</button>
+<p >Factorial: {{ factorialResult }}</p>
+<p >Square: {{ squareResult }}</p>
+<script>
+var app = angular.module('mathApp', []);
+app.controller('mathController', function ($scope) {
+$scope.calculateFactorial = function () {
+if ($scope.inputNumber >= 0) {
+$scope.factorialResult = factorial($scope.inputNumber);
+} else {
+$scope.factorialResult = 'Cannot calculate factorial for negative numbers';
+}
+};
+$scope.calculateSquare = function () {
+$scope.squareResult = $scope.inputNumber * $scope.inputNumber;
+};
+function factorial(n) {
+if (n == 0 || n == 1) {
+return 1;
+} else {
+return n * factorial(n - 1);
+}
+}
+});
+</script>
+</body>
+</html>
+******************************************************************
